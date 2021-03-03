@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ex.css">
+    <script defer src="ex.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="commonDiv">
+        <div>
+            <p>Exercise 1</p>
+            <div>Radostin Kostadinov</div>
+        </div>
+        <div>
+            <p>Exercise 2</p>
+            <div style="color: green;">Radostin Kostadinov</div>
+        </div>
+        <div>
+            <p>Exercise 3</p>
+            <div id="ex3"></div>
+        </div>
+        <div>
+            <p>Exercise 4</p>
+            <div style="display: flex; flex-direction: column;">
+                <a href="https://www.google.bg/">Go to Google.bg</a>
+                <a href="https://www.google.com/">Go to Google.com</a>
+                <a href="https://www.youtube.com/">Go to YouTube</a>
+            </div>
+        </div>
+
+        <div>
+            <p>Exercise 5</p>
+            <div id="ex5">
+                <h4>Picture 1</h4>
+                <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="picture1"><br><br>
+                <h4>Picture 2</h4>
+                <img src="https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__480.jpg" alt="picture2"><br><br>
+                <h4>Picture 3</h4>
+                <img src="https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014__480.jpg" alt="picture3"><br><br>
+                <h4>Picture 4</h4>
+                <img src="https://cdn.pixabay.com/photo/2015/09/09/16/05/forest-931706__480.jpg" alt="picture4"><br><br>
+                <h4>Picture 5</h4>
+                <img src="https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297__480.jpg"
+                    alt="picture5"><br><br>
+            </div>
+        </div>
+
+        <div>
+            <p>Exercise 6</p>
+            <div id="ex6">
+                <table class="align-left-1st-column">
+
+                    <caption>My tech stock picks</caption>
+                    <th style="text-align: left;">NAME</th>
+                    <th>SYMBOL</th>
+                    <th>CURRENT</th>
+                    <th>52WK HI</th>
+                    <th>52WK LO</th>
+                    <th>P/E RATIO</th>
+                    <tr>
+                        <td>Microsoft</td>
+                        <td>MSFT</td>
+                        <td>86-3/8</td>
+                        <td>119-15/16</td>
+                        <td>75-1/2</td>
+                        <td>56.09</td>
+                    </tr>
+                    <tr>
+                        <td>Cisco Systems</td>
+                        <td>CSCO</td>
+                        <td>72-1/8</td>
+                        <td>82</td>
+                        <td>24-13/16</td>
+                        <td>400.69</td>
+                    </tr>
+                    <tr>
+                        <td>America Online</td>
+                        <td>AOL</td>
+                        <td>63</td>
+                        <td>95-13/16</td>
+                        <td>38-15/32</td>
+                        <td>350.00</td>
+                    </tr>
+                    <tr>
+                        <td>Qwest Communications</td>
+                        <td>Q</td>
+                        <td>44-7/16</td>
+                        <td>66</td>
+                        <td>25-3/4</td>
+                        <td>74.06</td>
+                    </tr>
+                    <tr>
+                        <td>Dell Computers</td>
+                        <td>DELL</td>
+                        <td>53-59/64</td>
+                        <td>59-11/16</td>
+                        <td>31-3/8</td>
+                        <td>86.97</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div>
+            <p>Exercise 7</p>
+            <div>
+                <span>Name:</span><input type="text"><br>
+                <span>Address:</span><input type="text"><br>
+                <button>Submit</button>
+            </div>
+        </div>
+        <div>
+            <p>Exercise 8</p>
+            <div>
+                <h1>Registration Form</h1>
+                <form id="regform">
+                    <label for="username">Username:</label>
+                    <input id="username" type="text" name="username">
+                    <br>
+                    <label for="password">Password:</label>
+                    <input id="Password" type="password" name="password">
+                    <br>
+                    <label for="hearaboutus">Where did u hear about us?:</label>
+                    <select name="hearaboutus" id="hearaboutus">
+                        <option value="default">-- Please choose --</option>
+                        <option value="FacebookAd">Facebook Ad</option>
+                        <option value="YoutubeAd">Youtube Ad</option>
+                        <option value="Friend">Friend</option>
+                    </select><br>
+                    <label for="gender">Gender:</label>
+                    <input type="radio" name="gender" value="Male">Male
+                    <input type="radio" name="gender" value="Female">Female<br>
+                    <label for="comments">Comments:</label><br>
+                    <textarea name="comments" form="regform" cols="30" rows="5"></textarea><br>
+                    <label for="terms">Click to accept our terms:</label>
+                    <input type="checkbox" name="terms"><br>
+                    <input type="submit" value="Register">
+                    <input type="reset">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
