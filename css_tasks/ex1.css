@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.firstrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 15vh;
+    width: 100vw;
+    text-align: center;
+}
+
+.secondrow {
+    width: 100vw;
+    display: flex;
+    height: 15vh;
+    justify-content: space-between;
+
+    flex-direction: row;
+    text-align: center;
+
+}
+
+
+.red1, .red2, 
+.blue1, .blue2, 
+.green1, .green2, 
+.purple1, .purple2, 
+.orange1, .orange2,
+.lightblue1, .lightblue2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+
+}  
+.red1, .red2 {
+    width: 20%;
+    background-color: rgb(155, 59, 59);
+}
+
+.blue1, .blue2 {
+    background-color: rgb(92, 47, 218);
+}
+.blue1{
+    width: 7.6%;
+}
+.blue2{
+    width: 25%;
+}
+.green1, .green2 {
+
+    background-color: rgb(26, 117, 54);
+}
+
+.green1{
+    width: 25%;
+
+}
+.green2{
+    width: 7.6%;
+
+}
+
+.purple1, .purple2 {
+
+    background-color: rgb(104, 42, 93);
+}
+
+.purple1{
+    width: 7.6%;
+
+}
+.purple2{
+    width: 25%;
+    
+}
+
+.orange1, .orange2 {
+
+    background-color: rgb(155, 125, 59);
+}
+.orange1{
+    width: 25%;
+
+}
+.orange2{
+    width: 7.6%;
+
+}
+
+.lightblue1, .lightblue2 {
+
+    width: 7.6%;
+    background-color: rgb(59, 149, 155);
+}
+

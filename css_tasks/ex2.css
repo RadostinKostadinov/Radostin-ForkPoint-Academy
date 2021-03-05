@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(16, calc((100vh/16) - 0.3vw));
+    grid-template-rows: 100px;
+    grid-template-rows: repeat(16, calc((100vh/16) - 0.3vw));
+    row-gap:0.3vw;
+    column-gap: 0.3vw;
+}
+
+.main > div:nth-child(3n - 2) {
+    background-color: tomato;
+}
+.main > div:nth-child(3n - 1) {
+    background-color: rgb(2, 2, 2);
+}
+.main > div:nth-child(3n - 3) {
+    background-color: darkgray
+}
+
