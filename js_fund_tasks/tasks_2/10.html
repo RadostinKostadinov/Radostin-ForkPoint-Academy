@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS DOM</title>
+</head>
+
+<body>
+    <div id="page">
+        <div id="header">
+            <h1 id="title">
+                Page Title
+            </h1>
+        </div>
+        <div id="content">
+            <h2>Content Title</h2>
+            <p>Some copy goes here</p>
+            <p>Some copy goes here</p>
+        </div>
+    </div>
+    <script>
+        const page = document.getElementById('page');
+
+        const myEl1 = document.createElement('p');
+        myEl1.textContent = 'My paragraph 1';
+        const myEl2 = document.createElement('p');
+        myEl2.textContent = 'My paragraph 2';
+
+        // ●	Use the appendChild method to add a node.
+        page.appendChild(myEl1);
+        // ●	Use the insertBefore method to add a node.
+        page.insertBefore(myEl2, myEl1);
+        // ●	Use the removeChild method to remove a node.
+        page.removeChild(myEl2);
+        // ●	Use the replaceChild method to replace a node.
+        page.replaceChild(myEl2, myEl1);
+    </script>
+</body>
+
+</html>

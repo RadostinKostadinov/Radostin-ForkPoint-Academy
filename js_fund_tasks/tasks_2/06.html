@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p><span class='bold-underline'>We</span> have just started this <span class='bold-underline'>section for the
+            users</span> (beginner to intermediate) who want
+        to work with various <span class='bold-underline'>JavaScript problems and write</span> scripts online to test
+        their
+        <span class='bold-underline'>JavaScript</span> skill.
+    </p>
+    <script>
+        //get elements
+        const body = document.querySelector('body');
+        const spans = [...document.querySelectorAll('span')];
+
+        //create CSS block -> <style> </style>
+        const css = document.createElement('style');
+        body.prepend(css);
+
+        css.textContent += `\n.bold-underline {
+            font-weight: bold;
+        }
+        \n.bold-underline:hover {
+            text-decoration: underline;
+            font-size: 2rem;
+        }`;
+    </script>
+</body>
+
+</html>

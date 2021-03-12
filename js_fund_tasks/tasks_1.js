@@ -182,11 +182,21 @@ function lengthOfObject(object) {
 // 17.	Write a JavaScript function to get the first element of an array. Passing a parameter 'n' will return the first 'n' elements of the array.
 
 function getEl(array, n) {
+    if(n < 0) {
+        return [];
+    }
     if (n == null) {
         return array[0];
     }
-    return array.slice(0, n).join(' ');
+    return array.slice(0, n);
 }
+
+console.log(getEl([7, 9, 0, -2]));
+console.log(getEl([],3));
+console.log(getEl([7, 9, 0, -2],3));
+console.log(getEl([7, 9, 0, -2],6));
+console.log(getEl([7, 9, 0, -2],-3));
+
 
 // 18.	Write a JavaScript program to find the most frequent item of an array.
 
