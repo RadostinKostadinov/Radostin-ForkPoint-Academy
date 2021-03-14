@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./06.css">
     <title>Document</title>
 </head>
 
@@ -15,23 +16,7 @@
         their
         <span class='bold-underline'>JavaScript</span> skill.
     </p>
-    <script>
-        //get elements
-        const body = document.querySelector('body');
-        const spans = [...document.querySelectorAll('span')];
-
-        //create CSS block -> <style> </style>
-        const css = document.createElement('style');
-        body.prepend(css);
-
-        css.textContent += `\n.bold-underline {
-            font-weight: bold;
-        }
-        \n.bold-underline:hover {
-            text-decoration: underline;
-            font-size: 2rem;
-        }`;
-    </script>
+    <script src='./06.js'></script>
 </body>
 
 </html>
