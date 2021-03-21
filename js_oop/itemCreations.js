@@ -4,10 +4,8 @@ const allowedResistanceTypes = ['physical', 'poison', 'fire', 'water', 'air', 'e
 const allowedConsumablesTypes = ['minor', 'medium', 'big'];
 
 class Item {
-    #id;
-    #name;
     constructor(name) {
-        this.#id = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+        this._id = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
         this.name = name;
     }
 
@@ -18,33 +16,29 @@ class Item {
         if (name.length < 3 || name.length > 50) {
             throw Error(`${name}, doesn't meet the requirements - length must be between 3 and 50 letters.`)
         }
-        this.#name = name;
+        this._name = name;
     }
 
     getItemInfo() {
-        return `Item ${this.#id} - ${this.#name}`;
+        return `Item ${this._id} - ${this._name}`;
     }
 }
 
 class Weapon extends Item {
-    #attack;
-    #damageType;
-    #twoHanded;
-    #chance;
     constructor(name, attack, damageType, twoHanded) {
         super(name);
         this.attack = attack;
         this.damageType = damageType;
         this.twoHanded = twoHanded;
-        this.#chance = Math.floor(Math.random() * (51 - 5) + 5); //generates random integer between 5 and 50(inclusive);
+        this._chance = Math.floor(Math.random() * (51 - 5) + 5); //generates random integer between 5 and 50(inclusive);
     }
 
     get chance() {
-        return this.#chance;
+        return this._chance;
     }
 
     get twoHanded() {
-        return this.#twoHanded;
+        return this._twoHanded;
     }
 
     set attack(attack) {
@@ -55,37 +49,35 @@ class Weapon extends Item {
             throw Error(`${attack}, doesn't meet the requirements - attack must be between 1 and 30 000.`)
         }
 
-        this.#attack = attack;
+        this._attack = attack;
     }
 
     set damageType(damageType) {
         if (allowedDamageTypes.includes(damageType) == false) {
             throw Error(`Invalid damage type - '${damageType}'.`)
         }
-        this.#damageType = damageType;
+        this._damageType = damageType;
     }
 
     set twoHanded(isTwoHanded) {
         if (typeof isTwoHanded != 'boolean') {
             throw Error(`${isTwoHanded} doesn't meet the requirements - 'twoHanded' must be a boolean.`);
         }
-        this.#twoHanded = isTwoHanded;
+        this._twoHanded = isTwoHanded;
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
-        output += ` has ${this.#attack} of ${this.#damageType} damage`;
+        output += ` has ${this._attack} of ${this._damageType} damage`;
         return output;
     }
 }
 
 class Sword extends Weapon {
-    #cripple;
-    #bleed;
     constructor(name, attack, damageType, twoHanded) {
         super(name, attack, damageType, twoHanded);
         this.twoHanded = twoHanded;
-        this.#bleed = twoHanded;
+        this._bleed = twoHanded;
     }
 
     get cripple() {
@@ -95,10 +87,10 @@ class Sword extends Weapon {
     getItemInfo() {
         let output = super.getItemInfo();
         output += ` and has ${this.chance}% to`;
-        if (this.#cripple == true) {
+        if (this._cripple == true) {
             output += ' cripple';
         }
-        if (this.#bleed == true) {
+        if (this._bleed == true) {
             output += ' bleed';
         }
         return output;
@@ -106,9 +98,6 @@ class Sword extends Weapon {
 }
 
 class Bow extends Weapon {
-    #arrowType;
-    #pierce;
-    #critical;
     constructor(name, attack, damageType, twoHanded, arrowType) {
         if (twoHanded == false) {
             throw Error('Bows cannot be one handed.')
@@ -122,25 +111,25 @@ class Bow extends Weapon {
         if (allowedArrowTypes.includes(arrowType) == false) {
             throw Error(`Invalid arrow type.`);
         }
-        this.#arrowType = arrowType;
+        this._arrowType = arrowType;
 
         if (arrowType == 'normal') {
-            this.#pierce = true;
-            this.#critical = false;
+            this._pierce = true;
+            this._critical = false;
         } else {
-            this.#pierce == false;
-            this.#critical = true;
+            this._pierce == false;
+            this._critical = true;
         }
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
         output += ` and has ${this.chance}% to apply`
-        if (this.#pierce == true) {
+        if (this._pierce == true) {
             output += ' pierce';
         }
 
-        if (this.#critical == true) {
+        if (this._critical == true) {
             output += ' critical'
         }
         return output;
@@ -148,8 +137,6 @@ class Bow extends Weapon {
 }
 
 class Staff extends Weapon {
-    #burn; #poison; #cold; #electrify; #tremor;
-    #ability;
 
     constructor(name, attack, damageType, twoHanded) {
         if (damageType == 'physical') {
@@ -164,41 +151,40 @@ class Staff extends Weapon {
         
         switch (damageType) {
             case 'fire': {
-                this.#burn = true;
-                this.#ability = 'burn';
+                this._burn = true;
+                this._ability = 'burn';
             } break;
             case 'poison': {
-                this.#poison = true;
-                this.#ability = 'poison';
+                this._poison = true;
+                this._ability = 'poison';
             } break;
             case 'water': {
-                this.#cold = true;
-                this.#ability = 'cold';
+                this._cold = true;
+                this._ability = 'cold';
             } break;
             case 'air': {
-                this.#electrify = true;
-                this.#ability = 'electrify';
+                this._electrify = true;
+                this._ability = 'electrify';
             } break;
             case 'earth': {
-                this.#tremor = true;
-                this.#ability = 'tremor';
+                this._tremor = true;
+                this._ability = 'tremor';
             } break;
         }
     }
 
     getItemInfo() {
-        return super.getItemInfo() + ` and has ${this.chance}% to apply ${this.#ability}`;
+        return super.getItemInfo() + ` and has ${this.chance}% to apply ${this._ability}`;
     }
 }
 
 class Armor extends Item {
-    #defense; #resistance; #chance;
 
     constructor(name, defense, resistance) {
         super(name);
         this.defense = defense;
         this.resistance = resistance;
-        this.#chance = Math.floor(Math.random() * (101 - 10) + 10); //generates random integer between 10 and 100(inclusive);
+        this._chance = Math.floor(Math.random() * (101 - 10) + 10); //generates random integer between 10 and 100(inclusive);
     }
 
     set defense(defense) {
@@ -209,7 +195,7 @@ class Armor extends Item {
             throw Error(`${defense}, doesn't meet the requirements - defense must be between 1 and 30 000.`)
         }
 
-        this.#defense = defense;
+        this._defense = defense;
     }
 
     set resistance(resistance) {
@@ -217,18 +203,17 @@ class Armor extends Item {
             throw Error(`Invalid resistance type - '${resistance}'.`)
         }
 
-        this.#resistance = resistance;
+        this._resistance = resistance;
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
-        output += ` has ${this.#defense} defense and ${this.#chance}% ${this.#resistance} resistance`;
+        output += ` has ${this._defense} defense and ${this._chance}% ${this._resistance} resistance`;
         return output;
     }
 }
 
 class Helm extends Armor {
-    #attractiveness;
 
     constructor(name, defense, resistance, attractiveness) {
         super(name, defense, resistance);
@@ -242,19 +227,17 @@ class Helm extends Armor {
         if (atr < -5 || atr > 5) {
             throw Error(`${atr}, doesn't meet the requirements - 'attractiveness' must be between -5 and 5(inclusive).`)
         }
-        this.#attractiveness = atr;
+        this._attractiveness = atr;
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
-        output += ` and adds ${this.#attractiveness} attractiveness`;
+        output += ` and adds ${this._attractiveness} attractiveness`;
         return output;
     }
 }
 
 class Boots extends Armor {
-    #speed;
-
     constructor(name, defense, resistance, speed) {
         super(name, defense, resistance);
         this.speed = speed;
@@ -267,18 +250,17 @@ class Boots extends Armor {
         if (speed < 1 || speed > 10) {
             throw Error(`${speed}, doesn't meet the requirements - 'speed' must be between 1 and 10(inclusive).`)
         }
-        this.#speed = speed;
+        this._speed = speed;
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
-        output += ` and adds ${this.#speed} speed`;
+        output += ` and adds ${this._speed} speed`;
         return output;
     }
 }
 
 class Gloves extends Armor {
-    #crafting;
 
     constructor(name, defense, resistance, crafting) {
         super(name, defense, resistance);
@@ -292,18 +274,17 @@ class Gloves extends Armor {
         if (crafting < 1 || crafting > 10) {
             throw Error(`${crafting}, doesn't meet the requirements - 'crafting' must be between 1 and 10(inclusive).`)
         }
-        this.#crafting = crafting;
+        this._crafting = crafting;
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
-        output += ` and adds ${this.#crafting} crafting`;
+        output += ` and adds ${this._crafting} crafting`;
         return output;
     }
 }
 
 class Robe extends Armor {
-    #reputation;
 
     constructor(name, defense, resistance, reputation) {
         super(name, defense, resistance);
@@ -317,18 +298,17 @@ class Robe extends Armor {
         if (reputation < 1 || reputation > 10) {
             throw Error(`${reputation}, doesn't meet the requirements - 'reputation' must be between 1 and 10(inclusive).`)
         }
-        this.#reputation = reputation;
+        this._reputation = reputation;
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
-        output += ` and adds ${this.#reputation} reputation`;
+        output += ` and adds ${this._reputation} reputation`;
         return output;
     }
 }
 
 class Consumable extends Item {
-    #heals; #type; #effect;
 
     constructor(name, heals, type) {
         super(name);
@@ -341,7 +321,7 @@ class Consumable extends Item {
             throw Error(`${heals}, doesn't meet the requirements - 'heals' must be a boolean.`)
         }
 
-        this.#heals = heals;
+        this._heals = heals;
     }
 
     set type(type) {
@@ -349,22 +329,22 @@ class Consumable extends Item {
             throw Error(`Invalid consumable type - '${type}'.`);
         }
 
-        this.#type = type;
+        this._type = type;
         if (type == 'minor') {
-            this.#effect = Math.floor(Math.random() * (11 - 1) + 1);
+            this._effect = Math.floor(Math.random() * (11 - 1) + 1);
         } else if (type == 'medium') {
-            this.#effect = Math.floor(Math.random() * (21 - 11) + 11);
+            this._effect = Math.floor(Math.random() * (21 - 11) + 11);
         } else {
-            this.#effect = Math.floor(Math.random() * (31 - 21) + 21);
+            this._effect = Math.floor(Math.random() * (31 - 21) + 21);
         }
     }
 
     getItemInfo() {
         let output = super.getItemInfo();
-        if (this.#heals == true) {
-            output += ` it is ${this.#type} potion and heals for ${this.#effect}`;
+        if (this._heals == true) {
+            output += ` it is ${this._type} potion and heals for ${this._effect}`;
         } else {
-            output += ` it is ${this.#type} potion and damages for ${this.#effect}`;
+            output += ` it is ${this._type} potion and damages for ${this._effect}`;
         }
         return output;
     }
