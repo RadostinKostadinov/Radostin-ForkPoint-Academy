@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.line {
+    position: fixed;
+    border: 1px solid black;
+}
+
+.line-top {
+    width: 100px;
+    height: 0px;
+    top: 10vh;
+    right: calc(50vw - 50px);
+}
+
+.line-right {
+    width: 0px;
+    height: 100px;
+    top: calc(50vh - 50px);
+    right: 15vh;
+}
+
+.line-left {
+    width: 0px;
+    height: 100px;
+    top: calc(50vh - 50px);
+    left: 15vh;
+}
+
+.box {
+    border: 3px solid black;
+    position: fixed;
+}
+
+.arrow {
+    border: 3px solid black;
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    font-size: 3em;
+    line-height: 35px;
+
+}
+
+.arrow-up {
+    text-align: center;
+
+    top: 71vh;
+    left: calc(50vw - 20px);
+}
+
+.arrow-right {
+    text-align: left;
+
+    top: 75vh;
+    left: calc(50vw + 40px);
+}
+
+.arrow-left {
+    top: 75vh;
+    left: calc(50vw - 80px);
+}
+
+.arrow-down {
+    text-align: center;
+
+    top: 79vh;
+    left: calc(50vw - 20px);
+}
+
+.resize-arrow {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    
+}
