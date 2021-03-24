@@ -1,0 +1,77 @@
+.main-container {
+	width: 90vw;
+	height: 90vh;
+	margin: 5vh 5vw;
+	border: 1px solid black;
+	vertical-align: center;
+}
+
+.task-description {
+	font-size: 20px;
+}
+
+.task1 .list,
+.task3 .list {
+	font-size: 25px;
+}
+
+.task1 li.red {
+	color: red;
+}
+
+.task1 li.blue {
+	color: blue;
+}
+
+.box-container {
+	display: flex;
+}
+
+.box {
+	height: 100px;
+	width: 100px;
+	margin-left: 20px;
+	background-color: #C1C1C1;
+}
+
+.box.blue {
+	background-color: blue;
+}
+
+.box.red {
+	background-color: red;
+}
+
+.task2 .link-list {
+	margin: 20px;
+}
+
+.task2 .link-list a {
+	display: block;
+	font-size: 20px;
+}
+
+.task3 .button {
+	margin: 20px;
+	font-size: 26px;
+}
+
+.circle-container {
+	margin: 20px;
+	height: 100px;
+	width: 700px;
+	position: relative;
+	border: 1px solid blue;
+}
+
+.circle {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background: radial-gradient(circle at 65% 15%, white 1px, aqua 3%, darkblue 60%, aqua 100%);
+	position: absolute;
+}
+
+.task4 #checkbox {
+	margin-left: 20px;
+}
