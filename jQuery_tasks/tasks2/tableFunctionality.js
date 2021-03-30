@@ -14,17 +14,15 @@ function changeNumberInCell(ev) {
 }
 
 export function drawSudoku(data) {
-    return new Promise(resolve => {
-        const sudoku = $('<div/>', {
-            'class': 'sudoku',
-        });
-        data.board.forEach(row => row.forEach(num => {
-            const cell = createSudokuCell(num);
-            cell.appendTo(sudoku);
-        }));
-        sudoku.click(changeNumberInCell);
-        resolve(sudoku);
+    const sudoku = $('<div/>', {
+        'class': 'sudoku',
     });
+    data.board.forEach(row => row.forEach(num => {
+        const cell = createSudokuCell(num);
+        cell.appendTo(sudoku);
+    }));
+    sudoku.on('click', changeNumberInCell);
+    return sudoku;
 }
 
 export function prepareDataForPostReq() {
@@ -33,15 +31,16 @@ export function prepareDataForPostReq() {
             board: []
         };
 
-        const cellsArr = [...document.querySelectorAll('.sudoku div.cell')];
+        const cells = document.querySelectorAll('.sudoku div.cell');
+        const cellsArr = Array.from(cells);
 
         try {
             for (let i = 0; i < 81; i += 9) {
                 const boardRow = [];
                 for (let y = 0; y < 9; y++) {
-                    // if (Number(cellsArr[i + y].textContent) == 0) {
-                    //     throw new Error('Please fill all cells.');
-                    // }
+                    if (Number(cellsArr[i + y].textContent) == 0) {
+                        throw new Error('Please fill all cells.');
+                    }
                     boardRow.push(Number(cellsArr[i + y].textContent));
                 }
                 data.board.push(boardRow);
@@ -54,16 +53,14 @@ export function prepareDataForPostReq() {
 }
 
 function createSudokuCell(num) {
-    let cell;
     if (num > 0) {
-        cell = $('<div/>', {
+        return $('<div/>', {
             'class': 'cell constant',
             html: num,
         });
     } else {
-        cell = $('<div/>', {
+        return $('<div/>', {
             'class': 'cell'
         });
     }
-    return cell;
 }

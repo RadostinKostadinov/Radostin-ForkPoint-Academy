@@ -8,7 +8,7 @@ $('.box').click(function (ev) {
 //  unselected the ball should slide back to the left side of the
 //   "circle-container" for 3 seconds.
 $('#checkbox').click(function (ev) {
-    if ($('#checkbox:checked').length != 0) {
+    if ($(this).prop('checked')) {
         $('.circle').animate(
             {
                 left: `+=${$('.circle-container').width() - $('.circle').width()}`,

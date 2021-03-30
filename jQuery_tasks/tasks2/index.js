@@ -30,7 +30,7 @@ $('.btn').one('click', async function (ev) {
     }
     // ================================================================================================================================================
     console.log(data);
-    const sudokuTable = await table.drawSudoku(data);
+    const sudokuTable = table.drawSudoku(data);
     $('.loader').toggleClass('hidden').before(sudokuTable);
 
     $(this).click(async function (ev) {
