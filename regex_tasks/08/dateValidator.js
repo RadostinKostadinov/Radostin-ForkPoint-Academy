@@ -10,13 +10,22 @@ function validateDate(number) {
         throw Error('Input should be of type "number".');
     }
 
-    let pattern = /^(?<year>\d{4})(?<month>(?:(?=0)(?:0[1-9])|(1[0-2])))(?<day>(?:(?:(?<=....(?:01|03|05|07|08|10|12))(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1])))|(?:(?<=....(04|06|09|11))((0[1-9])|([1-2][0-9])|(30))))|(?:(?:(?<=02)(?:((?<=(...)(0|2|4|6|8)(..))((0[1-9])|(1[0-9])|(2[0-9])))|(?:(?<=(?:...)(?:1|3|5|7|9)(?:..))(?:(0[1-9])|(?:1[0-9])|(?:2[0-8])))))))$/m;
-    return pattern.test(number);
+    const pattern = /^(?<year>\d{4})(?<month>(?:(?=0)(?:0[1-9])|(1[0-2])))(?<day>(?:(?:(?<=....(?:01|03|05|07|08|10|12))(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1])))|(?:(?<=....(04|06|09|11))((0[1-9])|([1-2][0-9])|(30))))|(?:(?:(?<=02)(?:((?<=(...)(0|2|4|6|8)(..))((0[1-9])|(1[0-9])|(2[0-9])))|(?:(?<=(?:...)(?:1|3|5|7|9)(?:..))(?:(0[1-9])|(?:1[0-9])|(?:2[0-8])))))))$/m;
+
+    let isValid = pattern.test(number);
+
+    const matched = number.toString().match(pattern);
+    if (matched == null) {
+        return isValid;
+    }
+
+    const [year, month, day] = Object.values(matched.groups).map(r => Number(r));
+
+    if (month == 2 && day == 29) {
+        isValid = (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
+    }
+
+    return isValid;
 }
 
-console.log(validateDate(19900131));
-console.log(validateDate(19900230));
-console.log(validateDate(19900229));
-console.log(validateDate(19900228));
-console.log(validateDate(19910229));
-console.log(validateDate(19911231));
+console.log(validateDate(20180229));
