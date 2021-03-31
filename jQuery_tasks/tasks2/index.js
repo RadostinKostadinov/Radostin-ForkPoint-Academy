@@ -39,14 +39,8 @@ $('.btn').one('click', async function (ev) {
         const response = await api.postSudoku(data);
         console.log(response);
 
-        let solved = response.solution.reduce((acc, curr) => {
-            let row = [];
-            curr.forEach(el => row.push(el));
-            acc.push(row);
-            return acc;
-        }, []).map(row => row = `<div>${row.join(' ')}</div>`);
+        let solved = response.solution.map(row => row = `<div>${row.join(' ')}</div>`);
 
         $('#resultbox').removeClass('hidden').find('.difficulty').text(response.difficulty).end().find('.solution').html(solved);
     });
 });
-
