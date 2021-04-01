@@ -25,54 +25,62 @@
 	margin-right: 12px;
 }
 
-.results .exchange-rates-container, .results .error-message {
+.results .exchange-rates-container,
+.results .error-message {
 	display: none;
 }
-/* Sudoku table */ 
-.sudoku{
-    margin: auto;
+
+/* Sudoku table */
+.sudoku {
+	margin: auto;
 	width: 30vw;
-    display: grid;
-    grid-template-columns: repeat(9, calc((30vw/9) - 0.3vw));
-    grid-template-rows: 100px;
-    grid-template-rows: repeat(9, calc((30vw/9) - 0.3vw));
-    row-gap:0.3vw;
-    column-gap: 0.3vw;
+	display: grid;
+	grid-template-columns: repeat(9, calc((30vw/9) - 0.3vw));
+	grid-template-rows: 100px;
+	grid-template-rows: repeat(9, calc((30vw/9) - 0.3vw));
+	row-gap: 0.3vw;
+	column-gap: 0.3vw;
 }
 
-.sudoku > .cell {
+.sudoku>.cell {
 	border: 1px solid black;
 	text-align: center;
 	font-size: 2vw;
 }
+
 .constant {
-	background-color:wheat;
+	background-color: wheat;
 }
-.sudoku > div:nth-child(3n - 3) {
-    border-right: 3px solid black;
+
+.sudoku>div:nth-child(3n - 3) {
+	border-right: 3px solid black;
 }
-.sudoku > div:nth-child(n+19):nth-child(-n+27),
-.sudoku > div:nth-child(n+46):nth-child(-n+54){
-    border-bottom: 3px solid black;
+
+.sudoku>div:nth-child(n+19):nth-child(-n+27),
+.sudoku>div:nth-child(n+46):nth-child(-n+54) {
+	border-bottom: 3px solid black;
 }
+
 /* Result BOX */
-#resultbox{
+#resultbox {
 	position: fixed;
 	top: 40vh;
 	bottom: 5vh;
 	left: 70vw;
 	right: 5vw;
-	background-color: rgba(0,0,0,0.253);
-	box-shadow: 0px 0px 25px 15px rgb(124,124,124);
+	background-color: rgba(0, 0, 0, 0.253);
+	box-shadow: 0px 0px 25px 15px rgb(124, 124, 124);
 	padding: 32px;
 	text-align: center;
 }
+
 .difficulty {
 	font-size: 3vw;
 	font-weight: bold;
-	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-#resultbox div{
+
+#resultbox div {
 	margin: 0.3vw;
 }
 
@@ -98,15 +106,19 @@
 	animation: loader 2s infinite linear;
 }
 
-.loader>div:nth-of-type(1), .loader>div:nth-of-type(5), .loader>div:nth-of-type(9) {
+.loader>div:nth-of-type(1),
+.loader>div:nth-of-type(5),
+.loader>div:nth-of-type(9) {
 	animation-delay: 0.4s;
 }
 
-.loader>div:nth-of-type(4), .loader>div:nth-of-type(8) {
+.loader>div:nth-of-type(4),
+.loader>div:nth-of-type(8) {
 	animation-delay: 0.2s;
 }
 
-.loader>div:nth-of-type(2), .loader>div:nth-of-type(6) {
+.loader>div:nth-of-type(2),
+.loader>div:nth-of-type(6) {
 	animation-delay: 0.6s;
 }
 
@@ -118,12 +130,15 @@
 	0% {
 		transform: scale(0);
 	}
+
 	40% {
 		transform: scale(1);
 	}
+
 	80% {
 		transform: scale(1);
 	}
+
 	100% {
 		transform: scale(0);
 	}

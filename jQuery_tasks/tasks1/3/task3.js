@@ -1,4 +1,5 @@
 const boxes = $('.box');
+
 /* 
 Add click event listener on each list element which would show 
 alert that contains the text of the clicked element. 

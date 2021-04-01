@@ -18,9 +18,7 @@ export async function postSudoku(data) {
         url: 'https://sugoku.herokuapp.com/solve',
         method: 'POST',
         data,
-    }).done(function(response) {
+    }).done(function (response) {
         return response;
     });
 }
-
-
