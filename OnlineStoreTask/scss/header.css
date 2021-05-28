@@ -1,0 +1,20 @@
+.nav .nav-item .nav-button {
+  display: inline-block;
+  background-color: #cecece;
+  color: black;
+  text-decoration: none;
+  border: 3px solid black;
+  border-radius: 1vw;
+  width: 10vw;
+}
+
+.nav .nav-item .nav-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.nav .nav-item .nb-current {
+  background-color: red;
+  color: white;
+}
+/*# sourceMappingURL=header.css.map */

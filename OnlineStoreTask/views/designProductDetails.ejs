@@ -1,0 +1,106 @@
+<%- include('./designHeader'); %>
+
+<div class="container-md">
+    <div class="row">
+        <div class="col-md-1">
+            <div class="arrow-up">
+                <i class="bi bi-caret-up"></i>
+            </div>
+            <div class="images overflow-hidden">
+                <% _.each(product.image_groups[0].images, function(imageObject, i) { %>
+                <% if(i === 0) { %>
+                <img data-id="0" src="/images/<%= imageObject.link %>" class="image-carousel-current image-carousel rounded mx-auto d-block"
+                    alt="...">
+                <% } else { %>
+                <img data-id="<%= i %>" src="/images/<%= imageObject.link%>"
+                    class="image-carousel rounded mx-auto d-block" alt="...">
+                <% } %>
+                <% }); %>
+            </div>
+            <div class="arrow-down">
+                <i class="bi bi-caret-down"></i>
+            </div>
+        </div>
+        <div class="col-md-7 bg-light border border-3">
+            <img id="image-onfocus" class="d-block mx-auto h-100"
+                src="/images/<%= product.image_groups[0].images[0].link %>">
+        </div>
+        <div class="col-md-4">
+            <div class="item-no">
+                <span>Item No.</span>
+                <span><%= product.id %></span>
+            </div>
+            <div class="product-header pb-1">
+                <div id="product-name"><%= product.name %></div>
+                <div>
+                    <span id="price" class="curr-value"><%= product.price.toFixed(2) %></span>
+                    <span class="curr-dropdown-selector">
+                        <select id="currency-selector" class="currency">
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="BGN">BGN</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="product-options">
+                <div class="colors">
+                    <div class="header-subcategory mt-2 mb-1">Colors</div>
+                    <% _.each(product.simplifiedVariants, (variant) => { %>
+                        <div class="color d-inline-block" data-attr-colorId="<%= variant.colorId%>" data-av-sizes="<%= variant.avaiable_sizes%>" style="background-image: url(<%= variant.swatch_img %>)"></div>
+                    <% }); %>
+                </div>
+                <% if(product.sizes.length != 0) { %>
+                <div class="sizes">
+                    <div class="header-subcategory mt-2 mb-1">Size</div>
+                    <% _.each(product.sizes, (size) => { %>
+                        <div class="size d-inline-block" data-size="<%= size%>"><%= size%></div>
+                    <% }); %>
+                </div>
+                <% } %>
+                <div class="quantity">
+                    <div class="header-subcategory mt-2 mb-1">Quantity</div>
+                    <span class="d-flex d-md-block d-lg-flex bb pb-3">
+                        <div class="btn-group quantity-group me-3">
+                            <button type="button" class="btn">-</button>
+                            <input type="number" min="1" value="1" />
+                            <button type="button" class="btn">+</button>
+                        </div>
+                        <button class="btn btn-danger flex-fill no-radius-border mt-0 mt-md-4 mt-lg-0">ADD TO
+                            CART</button>
+                    </span>
+                </div>
+            </div>
+            <div class="product-share">
+                <div class="header-subcategory mt-2 mb-1">Share</div>
+                <img class="share-icon" src="https://image.flaticon.com/icons/png/512/124/124010.png" />
+                <img class="share-icon" src="https://image.flaticon.com/icons/png/512/124/124021.png" />
+                <button id="add-to-wishlist" class="fw-bold"><i class="bi bi-heart-fill"></i> ADD TO
+                    WISHLIST</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="d-flex justify-content-between">
+            <a class="description-link" data-bs-toggle="collapse" href="#collapseDescription" role="button"
+                aria-expanded="false" aria-controls="collapseDescription">
+                Description
+            </a>
+            <button class="description-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription">
+                <i class="bi bi-dash-square"></i>
+            </button>
+        </div>
+        <div class="row collapse mt-3" id="collapseDescription">
+            <div class="col-8">
+                <%- product.short_description %>
+            </div>
+            <div class="col-4 longdesc">
+                <%- product.long_description %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./wireframesFooter'); %>
