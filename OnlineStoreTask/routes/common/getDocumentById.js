@@ -1,13 +1,8 @@
 /* eslint-disable no-console */
 require('dotenv').config();
 const _ = require('underscore');
-const mongoose = require('mongoose');
 const Category = require('./db_models/category');
 
-mongoose.connect('mongodb://localhost:27017/shop', { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('error', (error) => { console.log(error); });
-db.once('open', () => { console.log('getDocumentById.js -> Connected to Database'); });
 
 module.exports = async function getCategoryById(catId) {
   const path = catId.split('-');

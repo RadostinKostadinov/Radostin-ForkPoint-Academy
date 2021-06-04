@@ -1,76 +1,79 @@
-/* eslint-disable no-console */
-/* eslint-disable max-len */
-/* eslint-disable no-param-reassign */
 require('dotenv').config();
-const mongoose = require('mongoose');
 const Product = require('./db_models/product');
-
-mongoose.connect('mongodb://localhost:27017/shop', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on('error', (error) => {
-  console.log(error);
-});
 
 module.exports = async function getFilteredProducts(dbQueryFilters) {
   let products = [];
   const dbQueryStrings = [];
   try {
-    if (dbQueryFilters.gender.length > 0) dbQueryFilters.gender.forEach((gender) => { // gender-?-?
-      gender = gender.toLowerCase();
-      if (dbQueryFilters.category.length > 0) dbQueryFilters.category.forEach((category) => { // gender-cat-?
-        category = category.toLowerCase();
-        if (dbQueryFilters.subcategory.length > 0) dbQueryFilters.subcategory.forEach((subcat) => { // gender-cat-subcat
-          subcat = subcat.toLowerCase();
-          let filter;
-          if (subcat === 'outfits') filter = `^${gender}-${subcat}$`;
-          else filter = `^${gender}-${category}-${subcat}`;
-          dbQueryStrings.push(filter);
-        });
-        else { // gender-cat-X
-          const filter = `^${gender}-${category}`;
+    if (dbQueryFilters.gender.length > 0) {
+      dbQueryFilters.gender.forEach((gender) => { // gender-?-?
+        const gnd = gender.toLowerCase();
+        if (dbQueryFilters.category.length > 0) {
+          dbQueryFilters.category.forEach((category) => { // gender-cat-?
+            const categ = category.toLowerCase();
+            if (dbQueryFilters.subcategory.length > 0) {
+              dbQueryFilters.subcategory.forEach((subcat) => { // gender-cat-subcat
+                const subc = subcat.toLowerCase();
+                let filter;
+                if (subc === 'outfits') {
+                  filter = `^${gnd}-${subc}$`;
+                } else {
+                  filter = `^${gnd}-${categ}-${subc}`;
+                }
+                dbQueryStrings.push(filter);
+              });
+            } else { // gender-cat-X
+              const filter = `^${gnd}-${categ}`;
+              dbQueryStrings.push(filter);
+            }
+          });
+        } else if (dbQueryFilters.subcategory.length > 0) {
+          dbQueryFilters.subcategory.forEach((subcat) => { // gender-X-subcat
+            const subc = subcat.toLowerCase();
+            let filter;
+            if (subc === 'outfits') {
+              filter = `^${gnd}-${subc}$`;
+            } else {
+              filter = `^${gnd}-.*-${subc}$`;
+            }
+            dbQueryStrings.push(filter);
+          });
+        } else { // gender-X-X
+          const filter = `^${gnd}-.*$`;
           dbQueryStrings.push(filter);
         }
       });
-      else
-      if (dbQueryFilters.subcategory.length > 0) dbQueryFilters.subcategory.forEach((subcat) => { // gender-X-subcat
-        subcat = subcat.toLowerCase();
+    } else if (dbQueryFilters.category.length > 0) {
+      dbQueryFilters.category.forEach((category) => { // X-cat-?
+        const categ = category.toLowerCase();
+        if (dbQueryFilters.subcategory.length > 0) {
+          dbQueryFilters.subcategory.forEach((subcat) => { // X-cat-subcat
+            const subc = subcat.toLowerCase();
+            let filter;
+            if (subc === 'outfits') {
+              filter = `^.*-${subc}$`;
+            } else {
+              filter = `^.*-${categ}-${subc}$`;
+            }
+            dbQueryStrings.push(filter);
+          });
+        } else { // X-cat-X
+          const filter = `^.*-${categ}-.*$`;
+          dbQueryStrings.push(filter);
+        }
+      });
+    } else if (dbQueryFilters.subcategory.length > 0) {
+      dbQueryFilters.subcategory.forEach((subcat) => {
+        const subc = subcat.toLowerCase();
         let filter;
-        if (subcat === 'outfits') filter = `^${gender}-${subcat}$`;
-        else filter = `^${gender}-.*-${subcat}$`;
+        if (subc === 'outfits') {
+          filter = `^.*-${subc}$`;
+        } else {
+          filter = `^.*-.*-${subc}$`;
+        }
         dbQueryStrings.push(filter);
       });
-      else { // gender-X-X
-        const filter = `^${gender}-.*$`;
-        dbQueryStrings.push(filter);
-      }
-    });
-    else
-    if (dbQueryFilters.category.length > 0) dbQueryFilters.category.forEach((category) => { // X-cat-?
-      category = category.toLowerCase();
-      if (dbQueryFilters.subcategory.length > 0) dbQueryFilters.subcategory.forEach((subcat) => { // X-cat-subcat
-        subcat = subcat.toLowerCase();
-        let filter;
-        if (subcat === 'outfits') filter = `^.*-${subcat}$`;
-        else filter = `^.*-${category}-${subcat}$`;
-        dbQueryStrings.push(filter);
-      });
-      else { // X-cat-X
-        const filter = `^.*-${category}-.*$`;
-        dbQueryStrings.push(filter);
-      }
-    });
-    else // X-X-?
-    if (dbQueryFilters.subcategory.length > 0) dbQueryFilters.subcategory.forEach((subcat) => { // X-X-subcat
-      subcat = subcat.toLowerCase();
-      let filter;
-      if (subcat === 'outfits') filter = `^.*-${subcat}$`;
-      else filter = `^.*-.*-${subcat}$`;
-      dbQueryStrings.push(filter);
-    });
-    else { // X-X-X
+    } else { // X-X-X
       const filter = '^.*$';
       dbQueryStrings.push(filter);
     }
@@ -86,7 +89,7 @@ module.exports = async function getFilteredProducts(dbQueryFilters) {
       products = products.concat(mypr);
     }
   } catch (err) {
-    console.log(err.message);
+    return err.message;
   }
   return products;
 };

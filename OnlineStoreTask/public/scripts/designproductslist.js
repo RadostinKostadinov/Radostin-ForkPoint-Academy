@@ -64,8 +64,7 @@ $('#collapseGender > div > span, #collapseCategory > div > span, #collapseSubCat
           $(location).attr('href', `/design/product/${ev.currentTarget.children[0].dataset.id}`);
         });
       },
-      error(err) {
-        alert(err.message);
+      error() {
       },
     });
   });
@@ -91,8 +90,7 @@ $('.resetbtn').on('click', () => {
         $(location).attr('href', `/design/product/${ev.currentTarget.children[0].dataset.id}`);
       });
     },
-    error(err) {
-      alert(err.message);
+    error() {
     },
   });
 });

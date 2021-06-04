@@ -1,6 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable curly */
-const fs = require('fs');
 const _ = require('underscore');
 const Product = require('../common/db_models/product');
 const convertCurrency = require('../common/convertCurrency.js');
@@ -31,7 +28,7 @@ module.exports = async function routeProductPage(req, res) {
         const colorId = objc.value;
 
         // get color's image link (swatch)
-        const swatchObj = _.find(product.image_groups, object => object.view_type === 'swatch' && colorId === object.variation_value)
+        const swatchObj = _.find(product.image_groups, object => object.view_type === 'swatch' && colorId === object.variation_value);
         const swatchImg = swatchObj.images[0].link;
 
         // get available sizes for this color
@@ -44,7 +41,8 @@ module.exports = async function routeProductPage(req, res) {
         }, []);
 
         // get price for this color
-        const variantWithThisColor = _.find(product.variants, object => object.variation_values.color === colorId);
+        const variantWithThisColor = _
+          .find(product.variants, object => object.variation_values.color === colorId);
         const {
           price,
         } = variantWithThisColor;
@@ -64,9 +62,13 @@ module.exports = async function routeProductPage(req, res) {
     // eslint-disable-next-line no-prototype-builtins
     if (product.hasOwnProperty('variation_attributes')) {
       const sizesObject = product.variation_attributes.find(object => object.name === 'Size' || object.name === 'size');
-      if (sizesObject) _.each(sizesObject.values, (valueObj) => {
-        if (valueObj.orderable) productSizes.push(valueObj.value);
-      });
+      if (sizesObject) {
+        _.each(sizesObject.values, (valueObj) => {
+          if (valueObj.orderable) {
+            productSizes.push(valueObj.value);
+          }
+        });
+      }
     }
 
     product.sizes = productSizes;

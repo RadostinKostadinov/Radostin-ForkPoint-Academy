@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const eslint = require('gulp-eslint');
 
-gulp.task('lintChecker', () => gulp.src(['./*.js', './routes/*.js', './public/scripts/*.js'])
+gulp.task('lintChecker', () => gulp.src(['./*.js', './routes/*/*.js', './public/scripts/*.js'])
   .pipe(eslint())
   .pipe(eslint.format())
   .pipe(eslint.failAfterError()));
@@ -17,7 +17,7 @@ gulp.task('scss:watch', () => {
 
 gulp.task('lint:watch', () => {
   gulp.watch('./public/scripts/*.js', ['lintChecker']);
-  gulp.watch('./routes/*.js', ['lintChecker']);
+  gulp.watch('./routes/*/*.js', ['lintChecker']);
   gulp.watch('./app.js', ['lintChecker']);
 });
 

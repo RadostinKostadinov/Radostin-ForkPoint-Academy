@@ -1,6 +1,5 @@
-/* eslint-disable global-require */
-// Module dependencies.
 const express = require('express');
+const mongoose = require('mongoose');
 const http = require('http');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -15,6 +14,16 @@ const routes = {
   designPLP: require('./routes/design/designProductsListPage'),
   designPDP: require('./routes/design/designProductDetailsPage'),
 };
+
+mongoose.connect('mongodb://localhost:27017/shop', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on('error', (error) => {
+  console.log(error);
+});
+db.once('open', () => { console.log('Connected to Database'); });
 
 const app = express();
 
