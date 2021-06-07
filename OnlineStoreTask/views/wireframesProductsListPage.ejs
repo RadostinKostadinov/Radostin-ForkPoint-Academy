@@ -1,0 +1,25 @@
+<%- include('./wireframesHeader'); %>
+
+<div class="container mt-5">
+    <div class="row">
+        <% _.each(products, function(product) { %>
+        <div class="col-md-6 productCard">
+            <div class="h-10">
+                <div class="title"><%= product.name %></div>
+            </div>
+            <div class="h-75">
+                <div class="image">
+                    <img class="img-thumbnail" src="/images/<%= product.image_groups[0].images[0].link %>">
+                </div>
+                <p class="description"><%= product.short_description %></p>
+                <div class="price">
+                    <span>Price: </span><span>$ </span><span><%= product.price.toFixed(2) %></span>
+                </div>
+                <a class="more-info" href="/wireframes/product/<%= product.id %>">More info</a>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include('./wireframesFooter'); %>

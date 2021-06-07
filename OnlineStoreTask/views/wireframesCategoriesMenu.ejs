@@ -1,0 +1,41 @@
+<%- include('./wireframesHeader'); %>
+
+<div id="main-category" class="container my-2">
+    <div class="row my-2">
+        <span id="main-category-name" class="col-md-12 text-uppercase fs-4">
+            <%= currentCat.name %>
+        </span>
+    </div>
+    <div class="row mt-4 mb-12">
+        <span id="main-category-description" class="col-md-12">
+            <%= currentCat.page_description %>
+        </span>
+    </div>
+</div>
+<div id="subcategories" class="container">
+    <ul class="list-group-flush m-0 p-0">
+        <% _.each(currentCat.categories, function(subC) { %>
+        <li class="list-group-item m-0 my-4 p-0">
+            <div class="row">
+                <p class="col-md-12 fs-5 text-red"><%= subC.name %></p>
+            </div>
+            <% if (subC.image) { %>
+            <div class="row">
+                <img src="/images/<%= subC.image %>">
+            </div>
+            <% } %>
+            <p class="pt-3"><%= subC.page_description %></p>
+            <div class="my-3">
+                <% if(_.has(subC, 'categories')) { %>
+                    <a class="view-button" href="/wireframes/categories/<%= subC.id %>">View products</a>
+                <% } else { %>
+                    <a class="view-button" href="/wireframes/products/<%= subC.id %>">View products</a>
+                <% } %>
+            </div>
+        </li>
+        <% }); %>
+    </ul>
+</div>
+
+
+<%- include('./wireframesFooter'); %>

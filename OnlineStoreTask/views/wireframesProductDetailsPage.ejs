@@ -1,0 +1,30 @@
+<%- include('./wireframesHeader'); %>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="image-pr">
+                <img class="img-thumbnail" src="/images/<%= product.image_groups[0].images[0].link %>">
+            </div>
+            <div class="product-content">
+                <h3 class="mb-4"><%= product.name %></h3>
+                <div class="description"><%- product.long_description %></div>
+            </div>
+            <div class="buy-button">
+                <button class="buy"><span class="px-2">Buy now</span></button>
+            </div>
+            <div class="currency">
+                <span>Price: </span><span class="curr-value"><%= product.price.toFixed(2) %></span>
+                <div class="curr-dropdown-selector">
+                    <select id="currency-selector">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="BGN">BGN</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./wireframesFooter'); %>

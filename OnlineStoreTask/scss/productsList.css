@@ -1,0 +1,47 @@
+.productCard {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10vh;
+}
+
+.productCard .title {
+  margin-bottom: 3vh;
+}
+
+.productCard .image {
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+
+.productCard .price {
+  float: left;
+  width: 50%;
+  padding-left: 5%;
+  padding-right: 10%;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.productCard .description {
+  float: left;
+  width: 75%;
+  height: 75%;
+  padding-left: 5%;
+  padding-right: 10%;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productCard .more-info {
+  background-color: #cecece;
+  color: black;
+  text-decoration: none;
+  border: 3px solid black;
+  border-radius: 1vw;
+  padding: 0.3vw;
+}
+/*# sourceMappingURL=productsList.css.map */
